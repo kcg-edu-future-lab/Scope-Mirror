@@ -30,4 +30,15 @@ namespace ClipMirror.Single
             Closing += (o, e) => ClipWindow.Close();
         }
     }
+
+    public static class ControlsHelper
+    {
+        public static double GetScreenScale(this Window window)
+        {
+            if (!window.IsLoaded) throw new InvalidOperationException("The window has not been loaded.");
+
+            var v = window.PointToScreen(new Point(100, 0)) - window.PointToScreen(new Point(0, 0));
+            return v.X / 100;
+        }
+    }
 }

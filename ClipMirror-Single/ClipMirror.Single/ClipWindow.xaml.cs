@@ -19,11 +19,26 @@ namespace ClipMirror.Single
     /// </summary>
     public partial class ClipWindow : Window
     {
+        AppModel AppModel = AppModel.Instance;
+        double scale = 1.0;
+
         public ClipWindow()
         {
             InitializeComponent();
 
             MouseLeftButtonDown += (o, e) => DragMove();
+
+            Loaded += (o, e) => scale = this.GetScreenScale();
+
+            BasePanel.Loaded += (o, e) => UpdateClipBounds();
+            LocationChanged += (o, e) => UpdateClipBounds();
+            SizeChanged += (o, e) => UpdateClipBounds();
+        }
+
+        void UpdateClipBounds()
+        {
+            var leftTop = BasePanel.PointToScreen(new Point(0, 0));
+            AppModel.ClipBounds = new Int32Rect((int)leftTop.X, (int)leftTop.Y, (int)(scale * BasePanel.ActualWidth), (int)(scale * BasePanel.ActualHeight));
         }
     }
 }
