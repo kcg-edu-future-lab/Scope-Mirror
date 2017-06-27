@@ -20,14 +20,49 @@ namespace ClipMirror.Single
     /// </summary>
     public partial class MainWindow : Window
     {
+        AppModel AppModel = AppModel.Instance;
+
         ClipWindow ClipWindow = new ClipWindow();
+        MirrorWindow MirrorWindow;
 
         public MainWindow()
         {
             InitializeComponent();
 
             Loaded += (o, e) => ClipWindow.Show();
-            Closing += (o, e) => ClipWindow.Close();
+            Closing += (o, e) =>
+            {
+                ClipWindow.Close();
+                MirrorWindow?.Close();
+            };
+
+            AppModel.IsDisplaying.Subscribe(b =>
+            {
+                if (b)
+                    ShowMirrorWindow();
+                else
+                    CloseMirrorWindow();
+            });
+        }
+
+        void ShowMirrorWindow()
+        {
+            var bounds = AppModel.SelectedScreen.Value.Rectangle;
+            var scale = this.GetScreenScale();
+
+            MirrorWindow = new MirrorWindow
+            {
+                Left = bounds.X / scale,
+                Top = bounds.Y / scale,
+            };
+            MirrorWindow.Loaded += (o, e) => MirrorWindow.WindowState = WindowState.Maximized;
+            MirrorWindow.Show();
+        }
+
+        void CloseMirrorWindow()
+        {
+            MirrorWindow.Close();
+            MirrorWindow = null;
         }
     }
 
