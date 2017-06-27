@@ -4,9 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClipMirror.Single"
+        xmlns:ToggleSwitch="clr-namespace:ToggleSwitch;assembly=ToggleSwitch"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        DataContext="{x:Static local:AppModel.Instance}"
+        Title="Clip Mirror" Height="400" Width="600" FontSize="28" Topmost="True">
+    <Window.Resources>
+        <DataTemplate x:Key="ScreenDataTemplate">
+            <TextBlock Text="{Binding Info}" Margin="4"/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListBox ItemsSource="{Binding Screens}" SelectedItem="{Binding SelectedScreen.Value}" ItemTemplate="{DynamicResource ScreenDataTemplate}" Margin="12"/>
+        <ToggleSwitch:HorizontalToggleSwitch IsChecked="{Binding IsDisplaying.Value, Mode=TwoWay}" Grid.Row="1" Width="180" Height="50" ThumbSize="80" FontSize="24"/>
     </Grid>
 </Window>

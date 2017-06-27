@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClipMirror.Single"
         mc:Ignorable="d"
-        Title="MirrorWindow" Height="300" Width="300">
+        DataContext="{x:Static local:AppModel.Instance}"
+        Title="Mirror" Height="300" Width="300" AllowsTransparency="True" WindowStyle="None" Opacity="0.9" Background="Black" ShowInTaskbar="False" ResizeMode="NoResize">
     <Grid>
-        
+        <Image Source="{Binding ScreenImage.Value}"/>
     </Grid>
 </Window>
