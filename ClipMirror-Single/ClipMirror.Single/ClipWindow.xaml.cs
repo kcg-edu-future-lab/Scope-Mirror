@@ -22,6 +22,8 @@ namespace ClipMirror.Single
         public ClipWindow()
         {
             InitializeComponent();
+
+            MouseLeftButtonDown += (o, e) => DragMove();
         }
     }
 }

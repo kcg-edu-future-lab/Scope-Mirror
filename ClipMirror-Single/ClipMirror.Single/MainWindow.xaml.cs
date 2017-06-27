@@ -20,9 +20,14 @@ namespace ClipMirror.Single
     /// </summary>
     public partial class MainWindow : Window
     {
+        ClipWindow ClipWindow = new ClipWindow();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            Loaded += (o, e) => ClipWindow.Show();
+            Closing += (o, e) => ClipWindow.Close();
         }
     }
 }
