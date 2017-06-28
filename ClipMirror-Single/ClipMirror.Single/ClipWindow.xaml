@@ -8,9 +8,9 @@
         DataContext="{x:Static local:AppModel.Instance}"
         Title="Clip" Height="400" Width="600" MinHeight="80" MinWidth="120" AllowsTransparency="True" WindowStyle="None" Background="#01FFFFFF" ShowInTaskbar="False" Topmost="True">
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="0" ResizeBorderThickness="16"/>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="24"/>
     </WindowChrome.WindowChrome>
-    <Border BorderBrush="#993366FF" BorderThickness="4" Margin="6">
+    <Border BorderBrush="#993366FF" BorderThickness="6" Margin="9">
         <Grid x:Name="BasePanel"/>
     </Border>
 </Window>
