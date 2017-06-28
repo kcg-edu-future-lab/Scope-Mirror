@@ -19,6 +19,10 @@ namespace ClipMirror.Single
     /// </summary>
     public partial class ClipWindow : Window
     {
+        public static readonly Func<bool, SolidColorBrush> ToMovingBackground = x => x ? OpaqueBackground : Transparent;
+        static readonly SolidColorBrush Transparent = new SolidColorBrush(Colors.Transparent);
+        static readonly SolidColorBrush OpaqueBackground = new SolidColorBrush(Color.FromArgb(1, 255, 255, 255));
+
         AppModel AppModel = AppModel.Instance;
         double scale = 1.0;
 

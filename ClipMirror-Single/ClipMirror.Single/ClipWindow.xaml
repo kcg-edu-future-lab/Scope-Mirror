@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:ClipMirror.Single"
         mc:Ignorable="d"
         DataContext="{x:Static local:AppModel.Instance}"
-        Title="Clip" Height="400" Width="600" MinHeight="80" MinWidth="120" AllowsTransparency="True" WindowStyle="None" Background="#01FFFFFF" ShowInTaskbar="False" Topmost="True">
+        Title="Clip" Height="400" Width="600" MinHeight="80" MinWidth="120" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="False" Topmost="True">
+    <Window.Resources>
+        <local:FuncConverter x:Key="MovingBackgroundConverter" ToFunc="{x:Static local:ClipWindow.ToMovingBackground}"/>
+    </Window.Resources>
+    <Window.Background>
+        <Binding Converter="{StaticResource MovingBackgroundConverter}" Path="IsClipMoving.Value"/>
+    </Window.Background>
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="24"/>
     </WindowChrome.WindowChrome>
