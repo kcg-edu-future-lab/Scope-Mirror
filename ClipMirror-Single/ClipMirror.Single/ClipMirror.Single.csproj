@@ -98,6 +98,7 @@
       <DependentUpon>ClipWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Convert.cs" />
+    <Compile Include="FuncConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
