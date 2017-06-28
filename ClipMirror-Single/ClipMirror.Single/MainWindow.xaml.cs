@@ -36,7 +36,7 @@ namespace ClipMirror.Single
                 MirrorWindow?.Close();
             };
 
-            AppModel.IsDisplaying.Subscribe(b =>
+            AppModel.IsMirroring.Subscribe(b =>
             {
                 if (b)
                     ShowMirrorWindow();

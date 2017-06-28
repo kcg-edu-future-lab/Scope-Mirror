@@ -21,7 +21,8 @@ namespace ClipMirror.Single
         public DisplayScreen[] Screens { get; }
         public ReactiveProperty<DisplayScreen> SelectedScreen { get; } = new ReactiveProperty<DisplayScreen>();
 
-        public ReactiveProperty<bool> IsDisplaying { get; } = new ReactiveProperty<bool>(mode: ReactivePropertyMode.DistinctUntilChanged);
+        public ReactiveProperty<bool> IsClipMoving { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> IsMirroring { get; } = new ReactiveProperty<bool>(mode: ReactivePropertyMode.DistinctUntilChanged);
 
         public AppModel()
         {

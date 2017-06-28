@@ -19,6 +19,19 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <ListBox ItemsSource="{Binding Screens}" SelectedItem="{Binding SelectedScreen.Value}" ItemTemplate="{DynamicResource ScreenDataTemplate}" Margin="12"/>
-        <ToggleSwitch:HorizontalToggleSwitch IsChecked="{Binding IsDisplaying.Value, Mode=TwoWay}" Grid.Row="1" Width="180" Height="50" ThumbSize="80" FontSize="24"/>
+        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Clip Moving:" Margin="8"/>
+            <ToggleSwitch:HorizontalToggleSwitch IsChecked="{Binding IsClipMoving.Value, Mode=TwoWay}" Width="180" Height="50" ThumbSize="80" FontSize="24" Margin="8" Grid.Column="1"/>
+            <TextBlock Text="Mirroring:" Margin="8" Grid.Row="1"/>
+            <ToggleSwitch:HorizontalToggleSwitch IsChecked="{Binding IsMirroring.Value, Mode=TwoWay}" Width="180" Height="50" ThumbSize="80" FontSize="24" Margin="8" Grid.Row="1" Grid.Column="1"/>
+        </Grid>
     </Grid>
 </Window>
