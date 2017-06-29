@@ -39,9 +39,15 @@ namespace ClipMirror.Single
             AppModel.IsMirroring.Subscribe(b =>
             {
                 if (b)
+                {
+                    AppModel.StartTrackingImage();
                     ShowMirrorWindow();
+                }
                 else
+                {
                     CloseMirrorWindow();
+                    AppModel.StopTrackingImage();
+                }
             });
         }
 

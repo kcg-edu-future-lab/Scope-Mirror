@@ -15,8 +15,8 @@ namespace ClipMirror.Single
     {
         public static AppModel Instance { get; } = new AppModel();
 
-        public Int32Rect ClipBounds { get; set; } = new Int32Rect(100, 100, 600, 400);
-        public ReadOnlyReactiveProperty<byte[]> ScreenImage { get; }
+        public Int32Rect ClipBounds { get; set; } = new Int32Rect(100, 100, 300, 200);
+        public ReactiveProperty<byte[]> ScreenImage { get; } = new ReactiveProperty<byte[]>();
 
         public DisplayScreen[] Screens { get; }
         public ReactiveProperty<DisplayScreen> SelectedScreen { get; } = new ReactiveProperty<DisplayScreen>();
@@ -26,14 +26,26 @@ namespace ClipMirror.Single
 
         public AppModel()
         {
-            ScreenImage = Observable.Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(0.2))
-                .Select(_ => GetClippedScreenImage())
-                .ToReadOnlyReactiveProperty();
-
             Screens = Screen.AllScreens
                 .Select((s, i) => new DisplayScreen(i + 1, s))
                 .ToArray();
             SelectedScreen.Value = Screens.FirstOrDefault(s => !s.Screen.Primary) ?? Screens.First();
+        }
+
+        IDisposable trackingImage;
+
+        public void StartTrackingImage()
+        {
+            StopTrackingImage();
+
+            trackingImage = Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(0.5))
+                .Subscribe(_ => ScreenImage.Value = GetClippedScreenImage());
+        }
+
+        public void StopTrackingImage()
+        {
+            trackingImage?.Dispose();
+            trackingImage = null;
         }
 
         byte[] GetClippedScreenImage()
