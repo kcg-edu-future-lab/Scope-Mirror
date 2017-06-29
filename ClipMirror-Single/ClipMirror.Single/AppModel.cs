@@ -38,7 +38,7 @@ namespace ClipMirror.Single
         {
             StopTrackingImage();
 
-            trackingImage = Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(0.5))
+            trackingImage = Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(0.25))
                 .Subscribe(_ => ScreenImage.Value = GetClippedScreenImage());
         }
 
