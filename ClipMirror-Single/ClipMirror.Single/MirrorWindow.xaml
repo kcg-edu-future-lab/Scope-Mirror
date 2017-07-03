@@ -1,0 +1,13 @@
+﻿<Window x:Class="ClipMirror.Single.MirrorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClipMirror.Single"
+        mc:Ignorable="d"
+        DataContext="{x:Static local:AppModel.Instance}"
+        Title="Mirror" Height="400" Width="600" AllowsTransparency="True" WindowStyle="None" Opacity="0.95" Background="Black" ShowInTaskbar="False" ResizeMode="NoResize">
+    <Grid>
+        <Image Source="{Binding ScreenImage.Value}"/>
+    </Grid>
+</Window>

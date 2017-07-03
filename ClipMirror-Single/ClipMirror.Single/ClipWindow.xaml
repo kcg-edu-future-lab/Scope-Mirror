@@ -1,0 +1,22 @@
+﻿<Window x:Class="ClipMirror.Single.ClipWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClipMirror.Single"
+        mc:Ignorable="d"
+        DataContext="{x:Static local:AppModel.Instance}"
+        Title="Clip" Height="400" Width="600" MinHeight="80" MinWidth="120" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="False" Topmost="True">
+    <Window.Resources>
+        <local:FuncConverter x:Key="MovingBackgroundConverter" ToFunc="{x:Static local:ClipWindow.ToMovingBackground}"/>
+    </Window.Resources>
+    <Window.Background>
+        <Binding Converter="{StaticResource MovingBackgroundConverter}" Path="IsClipMoving.Value"/>
+    </Window.Background>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="24"/>
+    </WindowChrome.WindowChrome>
+    <Border BorderBrush="#993366FF" BorderThickness="6" Margin="9">
+        <Grid x:Name="BasePanel"/>
+    </Border>
+</Window>
