@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{110AD9A2-67C6-49FB-B402-30D59FED33C4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ClipMirror.Single</RootNamespace>
-    <AssemblyName>ClipMirror.Single</AssemblyName>
+    <RootNamespace>ScopeMirror.Single</RootNamespace>
+    <AssemblyName>ScopeMirror.Single</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -81,7 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ClipWindow.xaml">
+    <Page Include="ScopeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -94,8 +94,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppModel.cs" />
-    <Compile Include="ClipWindow.xaml.cs">
-      <DependentUpon>ClipWindow.xaml</DependentUpon>
+    <Compile Include="ScopeWindow.xaml.cs">
+      <DependentUpon>ScopeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Convert.cs" />
     <Compile Include="FuncConverter.cs" />

@@ -9,19 +9,19 @@ using System.Windows;
 using System.Windows.Forms;
 using Reactive.Bindings;
 
-namespace ClipMirror.Single
+namespace ScopeMirror.Single
 {
     public class AppModel
     {
         public static AppModel Instance { get; } = new AppModel();
 
-        public Int32Rect ClipBounds { get; set; } = new Int32Rect(100, 100, 300, 200);
+        public Int32Rect ScopeBounds { get; set; } = new Int32Rect(100, 100, 300, 200);
         public ReactiveProperty<byte[]> ScreenImage { get; } = new ReactiveProperty<byte[]>();
 
         public DisplayScreen[] Screens { get; }
         public ReactiveProperty<DisplayScreen> SelectedScreen { get; } = new ReactiveProperty<DisplayScreen>();
 
-        public ReactiveProperty<bool> IsClipMoving { get; } = new ReactiveProperty<bool>(true);
+        public ReactiveProperty<bool> IsScopeMoving { get; } = new ReactiveProperty<bool>(true);
         public ReactiveProperty<bool> IsMirroring { get; } = new ReactiveProperty<bool>(mode: ReactivePropertyMode.DistinctUntilChanged);
 
         public AppModel()
@@ -39,7 +39,7 @@ namespace ClipMirror.Single
             StopTrackingImage();
 
             trackingImage = Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(0.25))
-                .Subscribe(_ => ScreenImage.Value = GetClippedScreenImage());
+                .Subscribe(_ => ScreenImage.Value = GetScopepedScreenImage());
         }
 
         public void StopTrackingImage()
@@ -48,13 +48,13 @@ namespace ClipMirror.Single
             trackingImage = null;
         }
 
-        byte[] GetClippedScreenImage()
+        byte[] GetScopepedScreenImage()
         {
-            using (var bitmap = new Bitmap(ClipBounds.Width, ClipBounds.Height))
+            using (var bitmap = new Bitmap(ScopeBounds.Width, ScopeBounds.Height))
             using (var graphics = Graphics.FromImage(bitmap))
             using (var memory = new MemoryStream())
             {
-                graphics.CopyFromScreen(ClipBounds.X, ClipBounds.Y, 0, 0, bitmap.Size);
+                graphics.CopyFromScreen(ScopeBounds.X, ScopeBounds.Y, 0, 0, bitmap.Size);
                 bitmap.Save(memory, ImageFormat.Png);
                 return memory.ToArray();
             }

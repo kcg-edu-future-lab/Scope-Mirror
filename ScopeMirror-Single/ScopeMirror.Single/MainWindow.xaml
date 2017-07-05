@@ -1,13 +1,13 @@
-﻿<Window x:Class="ClipMirror.Single.MainWindow"
+﻿<Window x:Class="ScopeMirror.Single.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ClipMirror.Single"
+        xmlns:local="clr-namespace:ScopeMirror.Single"
         xmlns:ToggleSwitch="clr-namespace:ToggleSwitch;assembly=ToggleSwitch"
         mc:Ignorable="d"
         DataContext="{x:Static local:AppModel.Instance}"
-        Title="Clip Mirror" Height="400" Width="600" FontSize="28" Topmost="True">
+        Title="Scope Mirror" Height="400" Width="600" FontSize="28" Topmost="True">
     <Window.Resources>
         <DataTemplate x:Key="ScreenDataTemplate">
             <TextBlock Text="{Binding Info}" Margin="4"/>
@@ -28,8 +28,8 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Clip Moving:" Margin="8"/>
-            <ToggleSwitch:HorizontalToggleSwitch IsChecked="{Binding IsClipMoving.Value, Mode=TwoWay}" Width="180" Height="50" ThumbSize="80" FontSize="24" Margin="8" Grid.Column="1"/>
+            <TextBlock Text="Scope Moving:" Margin="8"/>
+            <ToggleSwitch:HorizontalToggleSwitch IsChecked="{Binding IsScopeMoving.Value, Mode=TwoWay}" Width="180" Height="50" ThumbSize="80" FontSize="24" Margin="8" Grid.Column="1"/>
             <TextBlock Text="Mirroring:" Margin="8" Grid.Row="1"/>
             <ToggleSwitch:HorizontalToggleSwitch IsChecked="{Binding IsMirroring.Value, Mode=TwoWay}" Width="180" Height="50" ThumbSize="80" FontSize="24" Margin="8" Grid.Row="1" Grid.Column="1"/>
         </Grid>

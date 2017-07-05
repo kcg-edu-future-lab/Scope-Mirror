@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ClipMirror.Single
+namespace ScopeMirror.Single
 {
     /// <summary>
     /// App.xaml の相互作用ロジック

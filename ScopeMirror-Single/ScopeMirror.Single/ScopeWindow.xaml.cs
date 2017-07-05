@@ -12,12 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ClipMirror.Single
+namespace ScopeMirror.Single
 {
     /// <summary>
-    /// ClipWindow.xaml の相互作用ロジック
+    /// ScopeWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class ClipWindow : Window
+    public partial class ScopeWindow : Window
     {
         public static readonly Func<bool, SolidColorBrush> ToMovingBackground = x => x ? OpaqueBackground : Transparent;
         static readonly SolidColorBrush Transparent = new SolidColorBrush(Colors.Transparent);
@@ -26,7 +26,7 @@ namespace ClipMirror.Single
         AppModel AppModel = AppModel.Instance;
         double scale = 1.0;
 
-        public ClipWindow()
+        public ScopeWindow()
         {
             InitializeComponent();
 
@@ -34,15 +34,15 @@ namespace ClipMirror.Single
 
             Loaded += (o, e) => scale = this.GetScreenScale();
 
-            BasePanel.Loaded += (o, e) => UpdateClipBounds();
-            LocationChanged += (o, e) => UpdateClipBounds();
-            SizeChanged += (o, e) => UpdateClipBounds();
+            BasePanel.Loaded += (o, e) => UpdateScopeBounds();
+            LocationChanged += (o, e) => UpdateScopeBounds();
+            SizeChanged += (o, e) => UpdateScopeBounds();
         }
 
-        void UpdateClipBounds()
+        void UpdateScopeBounds()
         {
             var leftTop = BasePanel.PointToScreen(new Point(0, 0));
-            AppModel.ClipBounds = new Int32Rect((int)leftTop.X, (int)leftTop.Y, (int)(scale * BasePanel.ActualWidth), (int)(scale * BasePanel.ActualHeight));
+            AppModel.ScopeBounds = new Int32Rect((int)leftTop.X, (int)leftTop.Y, (int)(scale * BasePanel.ActualWidth), (int)(scale * BasePanel.ActualHeight));
         }
     }
 }
