@@ -39,7 +39,7 @@ namespace ScopeMirror.Single
             StopTrackingImage();
 
             trackingImage = Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(0.25))
-                .Subscribe(_ => ScreenImage.Value = GetScopepedScreenImage());
+                .Subscribe(_ => ScreenImage.Value = GetScopedScreenImage());
         }
 
         public void StopTrackingImage()
@@ -48,7 +48,7 @@ namespace ScopeMirror.Single
             trackingImage = null;
         }
 
-        byte[] GetScopepedScreenImage()
+        byte[] GetScopedScreenImage()
         {
             using (var bitmap = new Bitmap(ScopeBounds.Width, ScopeBounds.Height))
             using (var graphics = Graphics.FromImage(bitmap))
