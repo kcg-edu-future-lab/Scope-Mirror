@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScopeMirror.Lightning.Host"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        DataContext="{x:Static local:AppModel.Instance}"
+        Title="Mirror" Height="400" Width="600" AllowsTransparency="True" WindowStyle="None" Opacity="0.93" Background="Black" ResizeMode="NoResize" WindowState="Maximized">
     <Grid>
-        
+        <Image Source="{Binding ScreenImage.Value}"/>
     </Grid>
 </Window>
