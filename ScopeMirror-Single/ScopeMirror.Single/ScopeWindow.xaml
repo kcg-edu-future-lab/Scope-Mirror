@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ScopeMirror.Single"
         mc:Ignorable="d"
         DataContext="{x:Static local:AppModel.Instance}"
-        Title="Scope" Height="400" Width="600" MinHeight="80" MinWidth="120" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="False" Topmost="True">
+        Title="Scope" Height="400" Width="600" MinHeight="80" MinWidth="120" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="False" Topmost="True" Cursor="SizeAll">
     <Window.Resources>
         <local:FuncConverter x:Key="MovingBackgroundConverter" ToFunc="{x:Static local:ScopeWindow.ToMovingBackground}"/>
     </Window.Resources>

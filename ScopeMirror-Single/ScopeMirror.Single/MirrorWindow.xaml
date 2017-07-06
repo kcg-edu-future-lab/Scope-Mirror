@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ScopeMirror.Single"
         mc:Ignorable="d"
         DataContext="{x:Static local:AppModel.Instance}"
-        Title="Mirror" Height="400" Width="600" AllowsTransparency="True" WindowStyle="None" Opacity="0.95" Background="Black" ShowInTaskbar="False" ResizeMode="NoResize">
+        Title="Mirror" Height="400" Width="600" AllowsTransparency="True" WindowStyle="None" Opacity="0.93" Background="Black" ShowInTaskbar="False" ResizeMode="NoResize">
     <Grid>
         <Image Source="{Binding ScreenImage.Value}"/>
     </Grid>
