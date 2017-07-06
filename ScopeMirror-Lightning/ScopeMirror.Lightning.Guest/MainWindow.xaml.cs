@@ -20,9 +20,42 @@ namespace ScopeMirror.Lightning.Guest
     /// </summary>
     public partial class MainWindow : Window
     {
+        AppModel AppModel = AppModel.Instance;
+
+        ScopeWindow ScopeWindow = new ScopeWindow();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            Loaded += (o, e) => ScopeWindow.Show();
+            Closing += (o, e) =>
+            {
+                ScopeWindow.Close();
+            };
+
+            AppModel.IsMirroring.Subscribe(b =>
+            {
+                if (b)
+                {
+                    AppModel.StartTrackingImage();
+                }
+                else
+                {
+                    AppModel.StopTrackingImage();
+                }
+            });
+        }
+    }
+
+    public static class ControlsHelper
+    {
+        public static double GetScreenScale(this Window window)
+        {
+            if (!window.IsLoaded) throw new InvalidOperationException("The window has not been loaded.");
+
+            var v = window.PointToScreen(new Point(100, 0)) - window.PointToScreen(new Point(0, 0));
+            return v.X / 100;
         }
     }
 }

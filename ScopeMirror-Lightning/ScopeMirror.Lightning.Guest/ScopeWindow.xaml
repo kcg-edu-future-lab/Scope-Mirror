@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScopeMirror.Lightning.Guest"
         mc:Ignorable="d"
-        Title="ScopeWindow" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        DataContext="{x:Static local:AppModel.Instance}"
+        Title="Scope" Height="400" Width="600" MinHeight="80" MinWidth="120" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="False" Topmost="True" Cursor="SizeAll">
+    <Window.Resources>
+        <local:FuncConverter x:Key="MovingBackgroundConverter" ToFunc="{x:Static local:ScopeWindow.ToMovingBackground}"/>
+    </Window.Resources>
+    <Window.Background>
+        <Binding Converter="{StaticResource MovingBackgroundConverter}" Path="IsScopeMoving.Value"/>
+    </Window.Background>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="24"/>
+    </WindowChrome.WindowChrome>
+    <Border BorderBrush="#993366FF" BorderThickness="6" Margin="9">
+        <Grid x:Name="BasePanel"/>
+    </Border>
 </Window>
