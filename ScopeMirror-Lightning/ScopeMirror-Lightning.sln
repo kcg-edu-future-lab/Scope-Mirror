@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScopeMirror.Lightning.Host", "ScopeMirror.Lightning.Host\ScopeMirror.Lightning.Host.csproj", "{5FEE1831-BEE9-4308-A788-4F8F840D18BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScopeMirror.Lightning.Guest", "ScopeMirror.Lightning.Guest\ScopeMirror.Lightning.Guest.csproj", "{1EA050AA-E374-4993-91E9-957166F69DD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5FEE1831-BEE9-4308-A788-4F8F840D18BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FEE1831-BEE9-4308-A788-4F8F840D18BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FEE1831-BEE9-4308-A788-4F8F840D18BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EA050AA-E374-4993-91E9-957166F69DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EA050AA-E374-4993-91E9-957166F69DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EA050AA-E374-4993-91E9-957166F69DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EA050AA-E374-4993-91E9-957166F69DD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
