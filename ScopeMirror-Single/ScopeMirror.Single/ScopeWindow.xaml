@@ -1,17 +1,17 @@
-﻿<Window x:Class="ClipMirror.Single.ClipWindow"
+﻿<Window x:Class="ScopeMirror.Single.ScopeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ClipMirror.Single"
+        xmlns:local="clr-namespace:ScopeMirror.Single"
         mc:Ignorable="d"
         DataContext="{x:Static local:AppModel.Instance}"
-        Title="Clip" Height="400" Width="600" MinHeight="80" MinWidth="120" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="False" Topmost="True">
+        Title="Scope" Height="400" Width="600" MinHeight="80" MinWidth="120" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="False" Topmost="True" Cursor="SizeAll">
     <Window.Resources>
-        <local:FuncConverter x:Key="MovingBackgroundConverter" ToFunc="{x:Static local:ClipWindow.ToMovingBackground}"/>
+        <local:FuncConverter x:Key="MovingBackgroundConverter" ToFunc="{x:Static local:ScopeWindow.ToMovingBackground}"/>
     </Window.Resources>
     <Window.Background>
-        <Binding Converter="{StaticResource MovingBackgroundConverter}" Path="IsClipMoving.Value"/>
+        <Binding Converter="{StaticResource MovingBackgroundConverter}" Path="IsScopeMoving.Value"/>
     </Window.Background>
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="24"/>

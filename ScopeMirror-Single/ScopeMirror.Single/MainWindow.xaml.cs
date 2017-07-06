@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ClipMirror.Single
+namespace ScopeMirror.Single
 {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
@@ -22,17 +22,17 @@ namespace ClipMirror.Single
     {
         AppModel AppModel = AppModel.Instance;
 
-        ClipWindow ClipWindow = new ClipWindow();
+        ScopeWindow ScopeWindow = new ScopeWindow();
         MirrorWindow MirrorWindow;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            Loaded += (o, e) => ClipWindow.Show();
+            Loaded += (o, e) => ScopeWindow.Show();
             Closing += (o, e) =>
             {
-                ClipWindow.Close();
+                ScopeWindow.Close();
                 MirrorWindow?.Close();
             };
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClipMirror.Single.Properties
+namespace ScopeMirror.Single.Properties
 {
 
 

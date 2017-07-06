@@ -2,7 +2,7 @@
 using System.Windows;
 using DRectangle = System.Drawing.Rectangle;
 
-namespace ClipMirror.Single
+namespace ScopeMirror.Single
 {
     public static class Convert
     {
