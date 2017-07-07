@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Reactive.Linq;
 using System.Windows;
 using Reactive.Bindings;
@@ -14,6 +16,10 @@ namespace ScopeMirror.Lightning.Guest
     {
         public static AppModel Instance { get; } = new AppModel();
 
+        static string HostAddress { get; } = ConfigurationManager.AppSettings["HostAddress"];
+        static int HostPort { get; } = Convert.ToInt32(ConfigurationManager.AppSettings["HostPort"]);
+        static int GuestPort { get; } = Convert.ToInt32(ConfigurationManager.AppSettings["GuestPort"]);
+
         public Int32Rect ScopeBounds { get; set; } = new Int32Rect(100, 100, 300, 200);
         public ReactiveProperty<byte[]> ScreenImage { get; } = new ReactiveProperty<byte[]>();
 
@@ -22,6 +28,9 @@ namespace ScopeMirror.Lightning.Guest
 
         public AppModel()
         {
+            var client = new UdpClient(GuestPort);
+            client.Connect(HostAddress, HostPort);
+
             IsMirroring.Subscribe(b =>
             {
                 if (b)
@@ -33,6 +42,8 @@ namespace ScopeMirror.Lightning.Guest
                     StopTrackingImage();
                 }
             });
+
+            ScreenImage.Subscribe(b => client.Send(b, b.Length));
         }
 
         IDisposable trackingImage;
