@@ -19,15 +19,15 @@ namespace ScopeMirror.Lightning.Host
 
         public AppModel()
         {
-            var client = new UdpClient(HostPort);
-
             Task.Run(() =>
             {
+                var client = new UdpClient(HostPort);
+                var remoteEP = default(IPEndPoint);
+
                 while (true)
                 {
                     try
                     {
-                        var remoteEP = default(IPEndPoint);
                         ScreenImage.Value = client.Receive(ref remoteEP);
                     }
                     catch (SocketException ex)
