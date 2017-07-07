@@ -20,6 +20,21 @@ namespace ScopeMirror.Lightning.Guest
         public ReactiveProperty<bool> IsScopeMoving { get; } = new ReactiveProperty<bool>(true);
         public ReactiveProperty<bool> IsMirroring { get; } = new ReactiveProperty<bool>(mode: ReactivePropertyMode.DistinctUntilChanged);
 
+        public AppModel()
+        {
+            IsMirroring.Subscribe(b =>
+            {
+                if (b)
+                {
+                    StartTrackingImage();
+                }
+                else
+                {
+                    StopTrackingImage();
+                }
+            });
+        }
+
         IDisposable trackingImage;
 
         public void StartTrackingImage()

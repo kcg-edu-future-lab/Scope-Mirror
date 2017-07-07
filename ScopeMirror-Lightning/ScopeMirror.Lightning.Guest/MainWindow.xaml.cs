@@ -20,8 +20,6 @@ namespace ScopeMirror.Lightning.Guest
     /// </summary>
     public partial class MainWindow : Window
     {
-        AppModel AppModel = AppModel.Instance;
-
         ScopeWindow ScopeWindow = new ScopeWindow();
 
         public MainWindow()
@@ -29,22 +27,7 @@ namespace ScopeMirror.Lightning.Guest
             InitializeComponent();
 
             Loaded += (o, e) => ScopeWindow.Show();
-            Closing += (o, e) =>
-            {
-                ScopeWindow.Close();
-            };
-
-            AppModel.IsMirroring.Subscribe(b =>
-            {
-                if (b)
-                {
-                    AppModel.StartTrackingImage();
-                }
-                else
-                {
-                    AppModel.StopTrackingImage();
-                }
-            });
+            Closing += (o, e) => ScopeWindow.Close();
         }
     }
 
