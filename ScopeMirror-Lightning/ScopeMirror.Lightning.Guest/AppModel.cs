@@ -18,7 +18,6 @@ namespace ScopeMirror.Lightning.Guest
 
         static string HostAddress => ConfigurationManager.AppSettings["HostAddress"];
         static int HostPort => Convert.ToInt32(ConfigurationManager.AppSettings["HostPort"]);
-        static int GuestPort => Convert.ToInt32(ConfigurationManager.AppSettings["GuestPort"]);
 
         public Int32Rect ScopeBounds { get; set; } = new Int32Rect(100, 100, 300, 200);
         public ReactiveProperty<byte[]> ScreenImage { get; } = new ReactiveProperty<byte[]>(mode: ReactivePropertyMode.DistinctUntilChanged);
@@ -28,9 +27,6 @@ namespace ScopeMirror.Lightning.Guest
 
         public AppModel()
         {
-            var client = new UdpClient(GuestPort);
-            client.Connect(HostAddress, HostPort);
-
             IsMirroring.Subscribe(b =>
             {
                 if (b)
@@ -43,6 +39,7 @@ namespace ScopeMirror.Lightning.Guest
                 }
             });
 
+            var client = new UdpClient(HostAddress, HostPort);
             ScreenImage.Subscribe(b => client.Send(b, b.Length));
         }
 
