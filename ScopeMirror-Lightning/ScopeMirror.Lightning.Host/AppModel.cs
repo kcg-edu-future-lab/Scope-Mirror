@@ -13,7 +13,7 @@ namespace ScopeMirror.Lightning.Host
     {
         public static AppModel Instance { get; } = new AppModel();
 
-        static int HostPort { get; } = Convert.ToInt32(ConfigurationManager.AppSettings["HostPort"]);
+        static int HostPort => Convert.ToInt32(ConfigurationManager.AppSettings["HostPort"]);
 
         public ReactiveProperty<byte[]> ScreenImage { get; } = new ReactiveProperty<byte[]>();
 

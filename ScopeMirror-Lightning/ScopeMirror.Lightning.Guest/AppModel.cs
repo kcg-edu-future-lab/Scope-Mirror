@@ -16,12 +16,12 @@ namespace ScopeMirror.Lightning.Guest
     {
         public static AppModel Instance { get; } = new AppModel();
 
-        static string HostAddress { get; } = ConfigurationManager.AppSettings["HostAddress"];
-        static int HostPort { get; } = Convert.ToInt32(ConfigurationManager.AppSettings["HostPort"]);
-        static int GuestPort { get; } = Convert.ToInt32(ConfigurationManager.AppSettings["GuestPort"]);
+        static string HostAddress => ConfigurationManager.AppSettings["HostAddress"];
+        static int HostPort => Convert.ToInt32(ConfigurationManager.AppSettings["HostPort"]);
+        static int GuestPort => Convert.ToInt32(ConfigurationManager.AppSettings["GuestPort"]);
 
         public Int32Rect ScopeBounds { get; set; } = new Int32Rect(100, 100, 300, 200);
-        public ReactiveProperty<byte[]> ScreenImage { get; } = new ReactiveProperty<byte[]>();
+        public ReactiveProperty<byte[]> ScreenImage { get; } = new ReactiveProperty<byte[]>(mode: ReactivePropertyMode.DistinctUntilChanged);
 
         public ReactiveProperty<bool> IsScopeMoving { get; } = new ReactiveProperty<bool>(true);
         public ReactiveProperty<bool> IsMirroring { get; } = new ReactiveProperty<bool>(mode: ReactivePropertyMode.DistinctUntilChanged);
