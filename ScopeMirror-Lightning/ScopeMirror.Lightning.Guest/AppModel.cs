@@ -40,7 +40,9 @@ namespace ScopeMirror.Lightning.Guest
             });
 
             var client = new UdpClient(HostAddress, HostPort);
-            ScreenImage.Subscribe(b => client.Send(b, b.Length));
+            ScreenImage
+                .Where(b => b.Length <= 64000)
+                .Subscribe(b => client.Send(b, b.Length));
         }
 
         IDisposable trackingImage;
@@ -49,7 +51,7 @@ namespace ScopeMirror.Lightning.Guest
         {
             StopTrackingImage();
 
-            trackingImage = Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(0.25))
+            trackingImage = Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(0.15))
                 .Subscribe(_ => ScreenImage.Value = GetScopedScreenImage());
         }
 
