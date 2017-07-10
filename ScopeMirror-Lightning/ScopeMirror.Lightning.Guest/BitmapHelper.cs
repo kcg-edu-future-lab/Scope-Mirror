@@ -3,12 +3,15 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Windows;
 
 namespace ScopeMirror.Lightning.Guest
 {
     public static class BitmapHelper
     {
         public const int MaxBitmapBytes = 64000;
+
+        public static byte[] GetScreenImage(Int32Rect r) => GetScreenImage(r.X, r.Y, r.Width, r.Height);
 
         public static byte[] GetScreenImage(int x, int y, int width, int height)
         {
