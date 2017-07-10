@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         DataContext="{x:Static local:AppModel.Instance}"
         Title="Mirror" Height="400" Width="600" AllowsTransparency="True" WindowStyle="None" Opacity="0.93" Background="Black" ResizeMode="NoResize" FontSize="36" WindowState="Maximized">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
     <Grid>
         <TextBlock Text="{Binding HostAddresses}" Foreground="#FFEEEEEE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Image Source="{Binding ScreenImage.Value}"/>
+        <Image Source="{Binding ScreenImage.Value}" Visibility="{Binding IsImageVisible.Value, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </Window>

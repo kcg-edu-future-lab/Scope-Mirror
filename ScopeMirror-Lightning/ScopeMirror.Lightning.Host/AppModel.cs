@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Reactive.Bindings;
 
@@ -17,9 +18,16 @@ namespace ScopeMirror.Lightning.Host
 
         public string HostAddresses { get; } = string.Join("\n", GetHostAddresses());
         public ReactiveProperty<byte[]> ScreenImage { get; } = new ReactiveProperty<byte[]>();
+        public ReactiveProperty<bool> IsImageVisible { get; } = new ReactiveProperty<bool>();
 
         public AppModel()
         {
+            ScreenImage
+                .Subscribe(_ => IsImageVisible.Value = true);
+            ScreenImage
+                .Throttle(TimeSpan.FromSeconds(5))
+                .Subscribe(_ => IsImageVisible.Value = false);
+
             Task.Run(() =>
             {
                 var client = new UdpClient(HostPort);
