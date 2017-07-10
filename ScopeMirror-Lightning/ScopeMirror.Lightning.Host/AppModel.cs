@@ -15,6 +15,7 @@ namespace ScopeMirror.Lightning.Host
 
         static int HostPort => Convert.ToInt32(ConfigurationManager.AppSettings["HostPort"]);
 
+        public string HostAddresses { get; } = string.Join("\n", GetHostAddresses());
         public ReactiveProperty<byte[]> ScreenImage { get; } = new ReactiveProperty<byte[]>();
 
         public AppModel()
@@ -45,5 +46,9 @@ namespace ScopeMirror.Lightning.Host
                 }
             });
         }
+
+        static IEnumerable<IPAddress> GetHostAddresses() =>
+            Dns.GetHostAddresses(Dns.GetHostName())
+                .Where(a => a.AddressFamily == AddressFamily.InterNetwork);
     }
 }
