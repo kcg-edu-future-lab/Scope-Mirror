@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Reactive.Linq;
@@ -41,7 +38,7 @@ namespace ScopeMirror.Lightning.Guest
 
             var client = new UdpClient(HostAddress, HostPort);
             ScreenImage
-                .Where(b => b.Length <= 64000)
+                .Where(b => b.Length <= BitmapHelper.MaxBitmapBytes)
                 .Subscribe(b => client.Send(b, b.Length));
         }
 
@@ -52,25 +49,13 @@ namespace ScopeMirror.Lightning.Guest
             StopTrackingImage();
 
             trackingImage = Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(0.15))
-                .Subscribe(_ => ScreenImage.Value = GetScopedScreenImage());
+                .Subscribe(_ => ScreenImage.Value = BitmapHelper.GetScreenImage(ScopeBounds));
         }
 
         public void StopTrackingImage()
         {
             trackingImage?.Dispose();
             trackingImage = null;
-        }
-
-        byte[] GetScopedScreenImage()
-        {
-            using (var bitmap = new Bitmap(ScopeBounds.Width, ScopeBounds.Height))
-            using (var graphics = Graphics.FromImage(bitmap))
-            using (var memory = new MemoryStream())
-            {
-                graphics.CopyFromScreen(ScopeBounds.X, ScopeBounds.Y, 0, 0, bitmap.Size);
-                bitmap.Save(memory, ImageFormat.Png);
-                return memory.ToArray();
-            }
         }
     }
 }

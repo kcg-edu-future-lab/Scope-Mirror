@@ -81,6 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BitmapHelper.cs" />
     <Compile Include="ScopeWindow.xaml.cs">
       <DependentUpon>ScopeWindow.xaml</DependentUpon>
     </Compile>
