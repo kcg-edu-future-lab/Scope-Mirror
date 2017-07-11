@@ -1,6 +1,7 @@
-## Scope Mirror
+# Scope Mirror
 A tool to duplicate the clipped area of the desktop.
 
+## Single
 ### Setup
 - [Download the app](https://github.com/sakapon/Clip-Mirror/raw/master/Downloads/ClipMirror.Single-1.0.1.zip)
 
