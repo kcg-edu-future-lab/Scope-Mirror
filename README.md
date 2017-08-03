@@ -8,6 +8,8 @@ See [documents on Wiki](https://github.com/sakapon/Scope-Mirror/wiki).
 For standalone, shows the desktop to a secondary display.  
 デスクトップをセカンド ディスプレイに表示します。スタンドアロンで利用します。
 
+![ScopeMirror.Single](Images/ScopeMirror.Single-1.0.1.jpg)
+
 ### Setup
 - [Download the app](https://github.com/sakapon/Scope-Mirror/raw/master/Downloads/ClipMirror.Single-1.0.1.zip)
 
@@ -39,3 +41,9 @@ Shows the desktop to a remote computer on network.
 ### Release Notes
 - **v1.0.1** The first release.
 - **v1.0.2** Reduce big images.
+
+## Future Plans
+- `Multiple`: Shows the desktops of multiple computers simultaneously.  
+複数のコンピューターのデスクトップを同時に表示します。
+- For macOS.  
+macOS 版。
